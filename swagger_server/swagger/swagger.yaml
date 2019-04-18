@@ -1,0 +1,528 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Swept"
+paths:
+  /companies:
+    get:
+      summary: "List All companies"
+      description: "Gets a list of all `company` entities."
+      operationId: "getcompanies"
+      parameters: []
+      responses:
+        200:
+          description: "Successful response - returns an array of `company` entities."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/company"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    post:
+      summary: "Create a company"
+      description: "Creates a new instance of a `company`."
+      operationId: "createcompany"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A new `company` to be created."
+        required: true
+        schema:
+          $ref: "#/definitions/company"
+      responses:
+        201:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /companies/{companyId}:
+    get:
+      summary: "Get a company"
+      description: "Gets the details of a single instance of a `company`."
+      operationId: "getcompany"
+      parameters:
+      - name: "companyId"
+        in: "path"
+        description: "A unique identifier for a `company`."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response - returns a single `company`."
+          schema:
+            $ref: "#/definitions/company"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    put:
+      summary: "Update a company"
+      description: "Updates an existing `company`."
+      operationId: "updatecompany"
+      parameters:
+      - name: "companyId"
+        in: "path"
+        description: "A unique identifier for a `company`."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated `company` information."
+        required: true
+        schema:
+          $ref: "#/definitions/company"
+      responses:
+        202:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    delete:
+      summary: "Delete a company"
+      description: "Deletes an existing `company`."
+      operationId: "deletecompany"
+      parameters:
+      - name: "companyId"
+        in: "path"
+        description: "A unique identifier for a `company`."
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /plans:
+    get:
+      summary: "List All plans"
+      description: "Gets a list of all `plan` entities."
+      operationId: "getplans"
+      parameters: []
+      responses:
+        200:
+          description: "Successful response - returns an array of `plan` entities."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/plan"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    post:
+      summary: "Create a plan"
+      description: "Creates a new instance of a `plan`."
+      operationId: "createplan"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A new `plan` to be created."
+        required: true
+        schema:
+          $ref: "#/definitions/plan"
+      responses:
+        201:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /plans/{planId}:
+    get:
+      summary: "Get a plan"
+      description: "Gets the details of a single instance of a `plan`."
+      operationId: "getplan"
+      parameters:
+      - name: "planId"
+        in: "path"
+        description: "A unique identifier for a `plan`."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response - returns a single `plan`."
+          schema:
+            $ref: "#/definitions/plan"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    put:
+      summary: "Update a plan"
+      description: "Updates an existing `plan`."
+      operationId: "updateplan"
+      parameters:
+      - name: "planId"
+        in: "path"
+        description: "A unique identifier for a `plan`."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated `plan` information."
+        required: true
+        schema:
+          $ref: "#/definitions/plan"
+      responses:
+        202:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    delete:
+      summary: "Delete a plan"
+      description: "Deletes an existing `plan`."
+      operationId: "deleteplan"
+      parameters:
+      - name: "planId"
+        in: "path"
+        description: "A unique identifier for a `plan`."
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /companies/{companyId}/subscriptions:
+    get:
+      summary: "List All subscriptions"
+      description: "Gets a list of all `subscription` entities."
+      operationId: "getsubscriptions"
+      parameters:
+      - name: "companyId"
+        in: "path"
+        description: "A unique identifier for a `company`."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response - returns an array of `subscription` entities."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/subscription"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    post:
+      summary: "Create a subscription"
+      description: "Creates a new instance of a `subscription`."
+      operationId: "createsubscription"
+      parameters:
+      - name: "companyId"
+        in: "path"
+        description: "A unique identifier for a `company`."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "A new `subscription` to be created."
+        required: true
+        schema:
+          $ref: "#/definitions/subscription"
+      responses:
+        201:
+          description: "Successful response."
+          schema:
+            $ref: "#/definitions/subscription"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /companies/{companyId}/subscriptions/{subscriptionId}:
+    get:
+      summary: "Get a subscription"
+      description: "Gets the details of a single instance of a `subscription`."
+      operationId: "getsubscription"
+      parameters:
+      - name: "companyId"
+        in: "path"
+        description: "A unique identifier for a `company`."
+        required: true
+        type: "string"
+      - name: "subscriptionId"
+        in: "path"
+        description: "A unique identifier for a `subscription`."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response - returns a single `subscription`."
+          schema:
+            $ref: "#/definitions/subscription"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    put:
+      summary: "Update a subscription"
+      description: "Updates an existing `subscription`."
+      operationId: "updatesubscription"
+      parameters:
+      - name: "companyId"
+        in: "path"
+        description: "A unique identifier for a `company`."
+        required: true
+        type: "string"
+      - name: "subscriptionId"
+        in: "path"
+        description: "A unique identifier for a `subscription`."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated `subscription` information."
+        required: true
+        schema:
+          $ref: "#/definitions/subscription"
+      responses:
+        202:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    delete:
+      summary: "Delete a subscription"
+      description: "Deletes an existing `subscription`."
+      operationId: "deletesubscription"
+      parameters:
+      - name: "companyId"
+        in: "path"
+        description: "A unique identifier for a `company`."
+        required: true
+        type: "string"
+      - name: "subscriptionId"
+        in: "path"
+        description: "A unique identifier for a `subscription`."
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+definitions:
+  features:
+    type: "object"
+    properties:
+      maxLocations:
+        type: "integer"
+        format: "int32"
+      travelTime:
+        type: "boolean"
+      supervisors:
+        type: "boolean"
+      clientMessaging:
+        type: "boolean"
+      publicSurveys:
+        type: "boolean"
+      translations:
+        type: "boolean"
+      payments:
+        type: "boolean"
+      cleaningPlans:
+        type: "boolean"
+      workPeriodCsv:
+        type: "boolean"
+      scheduling:
+        type: "boolean"
+    title: "Root Type for features"
+    description: "The root of the features type's schema."
+    example:
+      maxLocations: 9
+      travelTime: true
+      supervisors: true
+      clientMessaging: true
+      publicSurveys: true
+      translations: true
+      payments: true
+      cleaningPlans: true
+      workPeriodCsv: true
+      scheduling: true
+  plan:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      type:
+        type: "string"
+      createdAt:
+        type: "string"
+      lastModified:
+        type: "string"
+      active:
+        type: "string"
+      features:
+        $ref: "#/definitions/features"
+    title: "Root Type for plan"
+    description: "The root of the plan type's schema."
+    example:
+      id: "some text"
+      name: "some text"
+      type: "some text"
+      createdAt: "some text"
+      lastModified: "some text"
+      active: "some text"
+      features:
+        maxLocations: 76
+        travelTime: true
+        supervisors: true
+        clientMessaging: true
+        publicSurveys: true
+        translations: true
+        payments: true
+        cleaningPlans: true
+        workPeriodCsv: true
+        scheduling: true
+  subscription:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      company:
+        type: "string"
+      plan:
+        $ref: "#/definitions/plan"
+      overwrites:
+        $ref: "#/definitions/features"
+      createdAt:
+        type: "string"
+      lastModified:
+        type: "string"
+      startsAt:
+        type: "string"
+      expiresAt:
+        type: "string"
+      active:
+        type: "boolean"
+    title: "Root Type for subscription"
+    description: "The root of the subscription type's schema."
+    example:
+      id: "some text"
+      company: "some text"
+      plan:
+        id: "some text"
+        name: "some text"
+        type: "some text"
+        createdAt: "some text"
+        lastModified: "some text"
+        active: "some text"
+        features:
+          maxLocations: 86
+          travelTime: true
+          supervisors: true
+          clientMessaging: true
+          publicSurveys: true
+          translations: true
+          payments: true
+          cleaningPlans: true
+          workPeriodCsv: true
+          scheduling: true
+      overwrites:
+        maxLocations: 26
+        travelTime: true
+        supervisors: true
+        clientMessaging: true
+        publicSurveys: true
+        translations: true
+        payments: true
+        cleaningPlans: true
+        workPeriodCsv: true
+        scheduling: true
+      createdAt: "some text"
+      lastModified: "some text"
+      startsAt: "some text"
+      expiresAt: "some text"
+      active: true
+  company:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      env:
+        type: "string"
+      name:
+        type: "string"
+      createdAt:
+        type: "string"
+        format: "date-time"
+      lastModified:
+        type: "string"
+        format: "date-time"
+      active:
+        type: "boolean"
+      testAccount:
+        type: "boolean"
+      twillio:
+        $ref: "#/definitions/company_twillio"
+      settings:
+        $ref: "#/definitions/company_settings"
+    title: "Root Type for company"
+    description: "The root of the company type's schema."
+    example:
+      id: "some text"
+      env: "some text"
+      name: "some text"
+      createdAt: "2018-02-10T09:30Z"
+      lastModified: "2018-02-10T09:30Z"
+      active: true
+      testAccount: true
+      twillio:
+        publicSurvey:
+        - "+1-202-555-0117"
+        - "+1-202-555-0118"
+        ivr:
+        - "+1-202-555-0117"
+        - "+1-202-555-0118"
+      settings:
+        address:
+          postalCode: "some text"
+          streetAddress: "some text"
+          city: "some text"
+          region: "some text"
+          country: "some text"
+        email: "some text"
+        phone:
+          primary:
+          - "+1-202-555-0117"
+          - "+1-202-555-0118"
+          clientSupport:
+          - "+1-202-555-0117"
+          - "+1-202-555-0118"
+        autoassignManagers: true
+        payroll:
+          payFreq: "some text"
+          payCycleStartDay: "2018-01-17"
+          nextPayDay: "2018-01-17"
+          maxTravelTimeMinutes: 88
+          travelTimeCalculationMethod: "some text"
+          payrollCalculationMethod: "some text"
+  company_twillio:
+    properties:
+      publicSurvey:
+        type: "array"
+        items: {}
+      ivr:
+        type: "array"
+        items: {}
+  company_settings_address:
+    properties:
+      postalCode:
+        type: "string"
+      streetAddress:
+        type: "string"
+      city:
+        type: "string"
+      region:
+        type: "string"
+      country:
+        type: "string"
+  company_settings_phone:
+    properties:
+      primary:
+        type: "array"
+        items: {}
+      clientSupport:
+        type: "array"
+        items: {}
+  company_settings_payroll:
+    properties:
+      payFreq:
+        type: "string"
+      payCycleStartDay:
+        type: "string"
+        format: "date"
+      nextPayDay:
+        type: "string"
+        format: "date"
+      maxTravelTimeMinutes:
+        type: "integer"
+        format: "int32"
+      travelTimeCalculationMethod:
+        type: "string"
+      payrollCalculationMethod:
+        type: "string"
+  company_settings:
+    properties:
+      address:
+        $ref: "#/definitions/company_settings_address"
+      email:
+        type: "string"
+      phone:
+        $ref: "#/definitions/company_settings_phone"
+      autoassignManagers:
+        type: "boolean"
+      payroll:
+        $ref: "#/definitions/company_settings_payroll"
